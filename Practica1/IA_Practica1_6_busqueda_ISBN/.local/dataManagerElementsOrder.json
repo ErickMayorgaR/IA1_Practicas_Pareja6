@@ -11,7 +11,15 @@
     {
       "Path": "Main.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
+      "VariablesSectionElementsOrder": [
+        "currentQueueItem&Sequence_3",
+        "numeroISBN&Sequence_3",
+        "ResultName&Sequence_8",
+        "infoISBNReestructurada&Sequence_1",
+        "ISBNs_6&Sequence_1",
+        "infoISBN&Sequence_2",
+        "insertarEnFIla&Sequence_4"
+      ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
