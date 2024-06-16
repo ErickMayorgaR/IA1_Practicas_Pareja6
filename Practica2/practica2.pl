@@ -1,6 +1,6 @@
-% Hechos
-% Definimos las instancias y subclases
-instancia_de(super_mario, plataforma).
+%%%%%%HECHOS
+%instancia_de(Objeto, Clase)
+instancia_de(super_mario, plataforma_juego).
 instancia_de(mario_kart, carreras).
 instancia_de(zelda, aventura).
 instancia_de(pokemon, rpg).
@@ -10,17 +10,19 @@ instancia_de(overwatch, fps).
 instancia_de(minecraft, sandbox).
 instancia_de(the_sims, simulacion).
 instancia_de(civilization, estrategia).
-instancia_de(plataforma, videojuegos).
-instancia_de(carreras, videojuegos).
-instancia_de(aventura, videojuegos).
-instancia_de(rpg, videojuegos).
-instancia_de(fps, videojuegos).
-instancia_de(battle_royale, videojuegos).
-instancia_de(sandbox, videojuegos).
-instancia_de(simulacion, videojuegos).
-instancia_de(estrategia, videojuegos).
 
-% Definimos las propiedades
+%subclase(Subclase, Clase)
+subclase_de(plataforma_juego, videojuegos).
+subclase_de(carreras, videojuegos).
+subclase_de(aventura, videojuegos).
+subclase_de(rpg, videojuegos).
+subclase_de(fps, videojuegos).
+subclase_de(battle_royale, videojuegos).
+subclase_de(sandbox, videojuegos).
+subclase_de(simulacion, videojuegos).
+subclase_de(estrategia, videojuegos).
+
+%tiene_propiedad(Instancia, Propiedad, Valor)
 tiene_propiedad(super_mario, plataforma, nintendo).
 tiene_propiedad(super_mario, lanzado, 1985).
 tiene_propiedad(mario_kart, plataforma, nintendo).
@@ -42,30 +44,31 @@ tiene_propiedad(the_sims, lanzado, 2000).
 tiene_propiedad(civilization, plataforma, multiplataforma).
 tiene_propiedad(civilization, lanzado, 1991).
 
-% Regla para saber si un objeto es una instancia de una clase
+%%%%%%REGLAS
+% Regla para saber si un objeto es una instancia de una clase en concreto
 es_instancia_de(Instancia, Clase) :-
     instancia_de(Instancia, Clase).
 es_instancia_de(Instancia, Clase) :-
     instancia_de(Instancia, SubClase),
-    es_instancia_de(SubClase, Clase).
+    subc(SubClase, Clase).
+
+% Regla para saber si una clase es subclase de otra
+subc(SubClase, Clase) :-
+    subclase_de(SubClase, Clase).
+subc(SubClase, Clase) :-
+    subclase_de(SubClase, ClaseIntermedia),
+    subc(ClaseIntermedia, Clase).
 
 % Regla para conocer todas las propiedades que posee una instancia
 propiedades_de(Instancia, Propiedad, Valor) :-
     tiene_propiedad(Instancia, Propiedad, Valor).
 
-% Regla para saber si una clase es subclase de otra
-es_subclase_de(SubClase, Clase) :-
-    instancia_de(SubClase, Clase).
-es_subclase_de(SubClase, Clase) :-
-    instancia_de(SubClase, Intermedia),
-    es_subclase_de(Intermedia, Clase).
-
 % Consultas de ejemplo
-% ¿Super Mario es una instancia de Videojuegos?
+% Â¿Super Mario es una instancia de Videojuegos?
 % es_instancia_de(super_mario, videojuegos).
 
-% ¿En qué plataforma fue lanzado Super Mario?
+% Â¿En quÃ© plataforma fue lanzado Super Mario?
 % propiedades_de(super_mario, plataforma, Valor).
 
-% ¿Plataforma es una subclase de Videojuegos?
-% es_subclase_de(plataforma, videojuegos).
+% Â¿Plataforma es una subclase de Videojuegos?
+% subc(plataforma_juego, videojuegos).
